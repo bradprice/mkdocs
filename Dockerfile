@@ -8,6 +8,8 @@ RUN yum install -y --setopt=tsflags=nodocs python36 python36-pip && \
 
 EXPOSE 8000
 
+WORKDIR /app
+
 ENTRYPOINT [ "/usr/local/bin/mkdocs" ]
 
 CMD [ "serve" ]
