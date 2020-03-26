@@ -6,6 +6,11 @@ RUN yum install -y --setopt=tsflags=nodocs python36 python36-pip && \
     yum clean all && \
     rm -rf /var/cache/yum/*
 
+# Set locale
+# https://click.palletsprojects.com/en/7.x/python3/
+ENV LC_ALL=en_US.utf8 \
+    LANG=en_US.utf8
+
 EXPOSE 8000
 
 WORKDIR /app
