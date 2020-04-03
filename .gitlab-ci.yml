@@ -5,6 +5,9 @@ docker-build-master:
     - docker:dind
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  variables:
+    MKDOCS_IMAGE: ${CI_REGISTRY_IMAGE}
+    MKDOCS_MATERIAL_IMAGE: ${CI_REGISTRY_IMAGE}:material
   script:
     - docker-compose build
     - docker-compose push
@@ -18,6 +21,9 @@ docker-build:
     - docker:dind
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  variables:
+    MKDOCS_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}
+    MKDOCS_MATERIAL_IMAGE: ${CI_REGISTRY_IMAGE}:material${CI_COMMIT_REF_SLUG}
   script:
     - docker-compose build
     - docker-compose push

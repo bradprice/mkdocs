@@ -1,6 +1,4 @@
-ARG IMAGE_NAME
-
-FROM ${IMAGE_NAME}
+FROM centos:7.7.1908
 
 RUN yum install -y --setopt=tsflags=nodocs python36 python36-pip && \
     pip3 install --no-cache-dir --upgrade pip && \
