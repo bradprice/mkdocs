@@ -2,17 +2,13 @@ version: '3.5'
 services:
 
   mkdocs:
-    image: "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}"
+    image: "${MKDOCS_IMAGE}"
     build:
       context: .
       dockerfile: Dockerfile    
 
   mkdocs-material:
-    image: "${CI_REGISTRY_IMAGE}:material${CI_COMMIT_REF_SLUG}"
+    image: "${MKDOCS_MATERIAL_IMAGE}"
     build:
       context: .
       dockerfile: Dockerfile-material
-      args:
-        IMAGE_NAME: "${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}"
-    depends_on: 
-      - mkdocs 
