@@ -21,3 +21,5 @@ WORKDIR /app
 ENTRYPOINT [ "/usr/local/bin/mkdocs" ]
 
 CMD [ "serve" ]
+
+HEALTHCHECK CMD curl --fail http://localhost:8000/ || exit 1
