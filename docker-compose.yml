@@ -18,3 +18,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-material
+
+  mkdocs-alpine-material:
+    image: "${MKDOCS_ALPINE_MATERIAL_IMAGE}"
+    build:
+      context: .
+      dockerfile: Dockerfile-alpine-material
