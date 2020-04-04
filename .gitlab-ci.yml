@@ -10,7 +10,7 @@ docker-build-master:
     MKDOCS_ALPINE_IMAGE: ${CI_REGISTRY_IMAGE}:alpine
     MKDOCS_MATERIAL_IMAGE: ${CI_REGISTRY_IMAGE}:material
   script:
-    - docker-compose build
+    - docker-compose build --parallel
     - docker-compose push
   only:
     - master
@@ -27,7 +27,7 @@ docker-build:
     MKDOCS_ALPINE_IMAGE: ${CI_REGISTRY_IMAGE}:alpine${CI_COMMIT_REF_SLUG}
     MKDOCS_MATERIAL_IMAGE: ${CI_REGISTRY_IMAGE}:material${CI_COMMIT_REF_SLUG}
   script:
-    - docker-compose build
+    - docker-compose build --parallel
     - docker-compose push
   except:
     - master
