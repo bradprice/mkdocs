@@ -7,6 +7,12 @@ services:
       context: .
       dockerfile: Dockerfile    
 
+  mkdocs-alpine:
+    image: "${MKDOCS_ALPINE_IMAGE}"
+    build:
+      context: .
+      dockerfile: Dockerfile-alpine
+
   mkdocs-material:
     image: "${MKDOCS_MATERIAL_IMAGE}"
     build:
