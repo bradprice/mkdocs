@@ -8,9 +8,10 @@ docker-build-master:
   variables:
     MKDOCS_IMAGE: ${CI_REGISTRY_IMAGE}
     MKDOCS_ALPINE_IMAGE: ${CI_REGISTRY_IMAGE}:alpine
+    MKDOCS_ALPINE_MATERIAL_IMAGE: ${CI_REGISTRY_IMAGE}:alpine-material
     MKDOCS_MATERIAL_IMAGE: ${CI_REGISTRY_IMAGE}:material
   script:
-    - docker-compose build
+    - docker-compose build --parallel
     - docker-compose push
   only:
     - master
@@ -24,10 +25,11 @@ docker-build:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   variables:
     MKDOCS_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_SLUG}
-    MKDOCS_ALPINE_IMAGE: ${CI_REGISTRY_IMAGE}:alpine${CI_COMMIT_REF_SLUG}
-    MKDOCS_MATERIAL_IMAGE: ${CI_REGISTRY_IMAGE}:material${CI_COMMIT_REF_SLUG}
+    MKDOCS_ALPINE_IMAGE: ${CI_REGISTRY_IMAGE}:alpine-${CI_COMMIT_REF_SLUG}
+    MKDOCS_ALPINE_MATERIAL_IMAGE: ${CI_REGISTRY_IMAGE}:alpine-material-${CI_COMMIT_REF_SLUG}
+    MKDOCS_MATERIAL_IMAGE: ${CI_REGISTRY_IMAGE}:material-${CI_COMMIT_REF_SLUG}
   script:
-    - docker-compose build
+    - docker-compose build --parallel
     - docker-compose push
   except:
     - master
