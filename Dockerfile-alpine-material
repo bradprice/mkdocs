@@ -16,7 +16,7 @@ EXPOSE 8000
 
 WORKDIR /app
 
-ENTRYPOINT [ "/usr/local/bin/mkdocs" ]
+ENTRYPOINT [ "/usr/bin/mkdocs" ]
 
 CMD [ "serve" ]
 
