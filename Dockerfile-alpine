@@ -1,9 +1,10 @@
 FROM alpine:3.11
 
 RUN addgroup -g 8000 -S mkdocs && adduser -u 8000 -S mkdocs -G mkdocs && \
-    apk add --no-cache python3 && \
+    apk add --no-cache python3 python3-dev gcc musl-dev && \
     pip3 install --no-cache-dir --upgrade pip && \
-    python3 -m pip install --no-cache-dir MkDocs==1.1 pymdown-extensions==6.3
+    python3 -m pip install --no-cache-dir mkdocs==1.1 pymdown-extensions==7.1 && \
+    apk del python3-dev gcc musl-dev
 
 # Set locale
 # https://click.palletsprojects.com/en/7.x/python3/
