@@ -1,7 +1,7 @@
 FROM alpine:3.11
 
 RUN addgroup -g 8000 -S mkdocs && adduser -u 8000 -S mkdocs -G mkdocs && \
-    apk add --no-cache python3 python3-dev gcc musl-dev && \
+    apk add --no-cache curl python3 python3-dev gcc musl-dev && \
     pip3 install --no-cache-dir --upgrade pip && \
     python3 -m pip install --no-cache-dir mkdocs==1.1 pymdown-extensions==7.1 mkdocs-material==5.1.1 && \
     apk del python3-dev gcc musl-dev
